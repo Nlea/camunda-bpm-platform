@@ -47,11 +47,11 @@ public enum Permissions implements Permission {
   READ("READ", 2,
       EnumSet.of(Resources.AUTHORIZATION, Resources.BATCH, Resources.DASHBOARD, Resources.DECISION_DEFINITION, Resources.DECISION_REQUIREMENTS_DEFINITION,
           Resources.DEPLOYMENT, Resources.FILTER, Resources.GROUP, Resources.PROCESS_DEFINITION, Resources.PROCESS_INSTANCE, Resources.REPORT, Resources.TASK,
-          Resources.TENANT, Resources.USER)),
+          Resources.TENANT, Resources.USER, Resources.EXTERNAL_TASK)),
 
   /** Indicates that UPDATE interactions are permitted. */
   UPDATE("UPDATE", 4, EnumSet.of(Resources.AUTHORIZATION, Resources.BATCH, Resources.DASHBOARD, Resources.DECISION_DEFINITION, Resources.FILTER,
-      Resources.GROUP, Resources.PROCESS_DEFINITION, Resources.PROCESS_INSTANCE, Resources.REPORT, Resources.TASK, Resources.TENANT, Resources.USER)),
+      Resources.GROUP, Resources.PROCESS_DEFINITION, Resources.PROCESS_INSTANCE, Resources.REPORT, Resources.TASK, Resources.TENANT, Resources.USER, Resources.EXTERNAL_TASK)),
 
   /** Indicates that CREATE interactions are permitted. */
   CREATE("CREATE", 8,
@@ -78,13 +78,19 @@ public enum Permissions implements Permission {
   CREATE_INSTANCE("CREATE_INSTANCE", 256, EnumSet.of(Resources.DECISION_DEFINITION, Resources.PROCESS_DEFINITION)),
 
   /** Indicates that READ_INSTANCE interactions are permitted. */
-  READ_INSTANCE("READ_INSTANCE", 512, EnumSet.of(Resources.PROCESS_DEFINITION)),
+  READ_INSTANCE("READ_INSTANCE", 512, EnumSet.of(Resources.PROCESS_DEFINITION, Resources.EXTERNAL_TASK)),
 
   /** Indicates that UPDATE_INSTANCE interactions are permitted. */
-  UPDATE_INSTANCE("UPDATE_INSTANCE", 1024, EnumSet.of(Resources.PROCESS_DEFINITION)),
+  UPDATE_INSTANCE("UPDATE_INSTANCE", 1024, EnumSet.of(Resources.PROCESS_DEFINITION, Resources.EXTERNAL_TASK)),
 
   /** Indicates that DELETE_INSTANCE interactions are permitted. */
   DELETE_INSTANCE("DELETE_INSTANCE", 2048, EnumSet.of(Resources.PROCESS_DEFINITION)),
+
+  /** Indicates that READ_EXTERNAL_TASK interactions are permitted. */
+ // READ_EXTERNAL_TASK("READ_EXTERNAL_TASK", 4096, EnumSet.of(Resources.PROCESS_DEFINITION)),
+
+  /** Indicates that UPDATE_EXTERNAL_TASK interactions are permitted. */
+  //UPDATE_EXTERNAL_TASK("UPDATE_EXTERNAL_TASK", 8192, EnumSet.of(Resources.PROCESS_DEFINITION)),
 
   /**
    * <p>Indicates that READ_HISTORY interactions are permitted.

@@ -16,27 +16,12 @@
  */
 package org.camunda.bpm.engine.impl.persistence.entity;
 
-import static org.camunda.bpm.engine.authorization.Permissions.CREATE;
-import static org.camunda.bpm.engine.authorization.Permissions.DELETE;
-import static org.camunda.bpm.engine.authorization.Permissions.READ;
-import static org.camunda.bpm.engine.authorization.Permissions.READ_HISTORY;
-import static org.camunda.bpm.engine.authorization.Permissions.READ_INSTANCE;
-import static org.camunda.bpm.engine.authorization.Permissions.READ_TASK;
-import static org.camunda.bpm.engine.authorization.Permissions.UPDATE;
-import static org.camunda.bpm.engine.authorization.Permissions.UPDATE_INSTANCE;
+import static org.camunda.bpm.engine.authorization.Permissions.*;
 import static org.camunda.bpm.engine.authorization.ProcessDefinitionPermissions.READ_INSTANCE_VARIABLE;
 import static org.camunda.bpm.engine.authorization.ProcessDefinitionPermissions.READ_HISTORY_VARIABLE;
-import static org.camunda.bpm.engine.authorization.Resources.HISTORIC_PROCESS_INSTANCE;
-import static org.camunda.bpm.engine.authorization.Resources.HISTORIC_TASK;
+import static org.camunda.bpm.engine.authorization.Resources.*;
 import static org.camunda.bpm.engine.authorization.TaskPermissions.READ_VARIABLE;
-import static org.camunda.bpm.engine.authorization.Resources.AUTHORIZATION;
-import static org.camunda.bpm.engine.authorization.Resources.BATCH;
-import static org.camunda.bpm.engine.authorization.Resources.DECISION_DEFINITION;
-import static org.camunda.bpm.engine.authorization.Resources.DECISION_REQUIREMENTS_DEFINITION;
-import static org.camunda.bpm.engine.authorization.Resources.DEPLOYMENT;
-import static org.camunda.bpm.engine.authorization.Resources.PROCESS_DEFINITION;
-import static org.camunda.bpm.engine.authorization.Resources.PROCESS_INSTANCE;
-import static org.camunda.bpm.engine.authorization.Resources.TASK;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -48,15 +33,8 @@ import java.util.Set;
 
 import org.camunda.bpm.engine.AuthorizationException;
 import org.camunda.bpm.engine.ProcessEngineConfiguration;
-import org.camunda.bpm.engine.authorization.Authorization;
-import org.camunda.bpm.engine.authorization.Groups;
-import org.camunda.bpm.engine.authorization.HistoricProcessInstancePermissions;
-import org.camunda.bpm.engine.authorization.HistoricTaskPermissions;
-import org.camunda.bpm.engine.authorization.MissingAuthorization;
-import org.camunda.bpm.engine.authorization.Permission;
-import org.camunda.bpm.engine.authorization.Permissions;
-import org.camunda.bpm.engine.authorization.Resource;
-import org.camunda.bpm.engine.authorization.Resources;
+import org.camunda.bpm.engine.authorization.*;
+import org.camunda.bpm.engine.externaltask.ExternalTask;
 import org.camunda.bpm.engine.impl.AbstractQuery;
 import org.camunda.bpm.engine.impl.ActivityStatisticsQueryImpl;
 import org.camunda.bpm.engine.impl.AuthorizationQueryImpl;
@@ -1055,6 +1033,7 @@ public class AuthorizationManager extends AbstractManager {
         .disjunctive()
         .atomicCheck(PROCESS_INSTANCE, "RES.PROC_INST_ID_", READ)
         .atomicCheck(PROCESS_DEFINITION, "RES.PROC_DEF_KEY_", READ_INSTANCE)
+            .atomicCheck(EXTERNAL_TASK, "RES.EXTERNAL_TASK", READ_INSTANCE)
         .build();
     addPermissionCheck(query.getAuthCheck(), permissionCheck);
   }
@@ -1068,11 +1047,13 @@ public class AuthorizationManager extends AbstractManager {
         .disjunctive()
         .atomicCheck(PROCESS_INSTANCE, "RES.PROC_INST_ID_", READ)
         .atomicCheck(PROCESS_DEFINITION, "RES.PROC_DEF_KEY_", READ_INSTANCE)
+            .atomicCheck(EXTERNAL_TASK, "RES.EXTERNAL_TASK", READ_INSTANCE)
         .done()
       .composite()
         .disjunctive()
         .atomicCheck(PROCESS_INSTANCE, "RES.PROC_INST_ID_", UPDATE)
         .atomicCheck(PROCESS_DEFINITION, "RES.PROC_DEF_KEY_", UPDATE_INSTANCE)
+            .atomicCheck(EXTERNAL_TASK, "RES.EXTERNAL_TASK", UPDATE_INSTANCE)
         .done()
       .build();
 
