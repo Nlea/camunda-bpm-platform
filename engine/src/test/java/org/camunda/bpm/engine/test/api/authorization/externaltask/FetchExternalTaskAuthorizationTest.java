@@ -293,7 +293,7 @@ public class FetchExternalTaskAuthorizationTest extends AuthorizationTest {
   @Test
   public void testFetchWithUpdateProcessInstanceOnExternalTask(){
     // given
-    createGrantAuthorization(EXTERNAL_TASK, "oneExternalTaskProcess", userId, UPDATE_INSTANCE);
+    createGrantAuthorization(EXTERNAL_TASK, "externalTaskTopic", userId, UPDATE_INSTANCE);
     System.out.println("Test14: With UPDATE_INSTANCE permission on External Task, external Task count: " + externalTaskService.createExternalTaskQuery().count());
 
     // when
@@ -308,7 +308,7 @@ public class FetchExternalTaskAuthorizationTest extends AuthorizationTest {
   @Test
   public void testFetchWithUpdateAndReadProcessInstanceOnExternalTask(){
     // given
-    createGrantAuthorization(EXTERNAL_TASK, "oneExternalTaskProcess", userId, READ_INSTANCE,UPDATE_INSTANCE);
+    createGrantAuthorization(EXTERNAL_TASK, "externalTaskTopic", userId, READ_INSTANCE,UPDATE_INSTANCE);
     System.out.println("Test14: With UPDATE_INSTANCE and READ_INSTANCE permission on External Task, external Task count: " + externalTaskService.createExternalTaskQuery().count());
 
     // when
@@ -317,7 +317,7 @@ public class FetchExternalTaskAuthorizationTest extends AuthorizationTest {
             .execute();
 
     // then
-    assertEquals(0, tasks.size());
+    assertEquals(1, tasks.size());
   }
 
 }
