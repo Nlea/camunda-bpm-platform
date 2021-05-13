@@ -57,7 +57,6 @@ public class FetchExternalTaskAuthorizationTest extends AuthorizationTest {
 
   @Test
   public void testFetchWithoutAuthorization() {
-    System.out.println("Test1: Without Authorization, external Task count: " + externalTaskService.createExternalTaskQuery().count());
 
     // when
     List<LockedExternalTask> tasks = externalTaskService.fetchAndLock(5, WORKER_ID)
@@ -74,7 +73,6 @@ public class FetchExternalTaskAuthorizationTest extends AuthorizationTest {
   public void testFetchWithReadOnProcessInstance() {
     // given
     createGrantAuthorization(PROCESS_INSTANCE, instance1Id, userId, READ);
-    System.out.println("Test2: With READ permission on Process instance, external Task count: " + externalTaskService.createExternalTaskQuery().count());
 
 
     // when
@@ -91,7 +89,6 @@ public class FetchExternalTaskAuthorizationTest extends AuthorizationTest {
   public void testFetchWithUpdateOnProcessInstance() {
     // given
     createGrantAuthorization(PROCESS_INSTANCE, instance1Id, userId, UPDATE);
-    System.out.println("Test3: With UPDATE permission on Process instance, external Task count: " + externalTaskService.createExternalTaskQuery().count());
 
 
     // when
@@ -107,7 +104,6 @@ public class FetchExternalTaskAuthorizationTest extends AuthorizationTest {
   public void testFetchWithReadAndUpdateOnProcessInstance() {
     // given
     createGrantAuthorization(PROCESS_INSTANCE, instance1Id, userId, READ, UPDATE);
-    System.out.println("Test4: With READ and UPDATE permission on Process instance, external Task count: " + externalTaskService.createExternalTaskQuery().count());
 
 
     // when
@@ -127,7 +123,6 @@ public class FetchExternalTaskAuthorizationTest extends AuthorizationTest {
 
     // given
     createGrantAuthorization(PROCESS_DEFINITION, "oneExternalTaskProcess", userId, READ_INSTANCE);
-    System.out.println("Test5: With READ_INSTANCE permission on Process definition, external Task count: " + externalTaskService.createExternalTaskQuery().count());
 
     // when
     List<LockedExternalTask> tasks = externalTaskService.fetchAndLock(5, WORKER_ID)
@@ -143,7 +138,6 @@ public class FetchExternalTaskAuthorizationTest extends AuthorizationTest {
   public void testFetchWithUpdateInstanceOnProcessDefinition() {
     // given
     createGrantAuthorization(PROCESS_DEFINITION, "oneExternalTaskProcess", userId, UPDATE_INSTANCE);
-    System.out.println("Test6: With UPDATE_INSTANCE permission on Process definition, external Task count: " + externalTaskService.createExternalTaskQuery().count());
 
     // when
     List<LockedExternalTask> tasks = externalTaskService.fetchAndLock(5, WORKER_ID)
@@ -161,7 +155,6 @@ public class FetchExternalTaskAuthorizationTest extends AuthorizationTest {
   public void testFetchWithReadAndUpdateInstanceOnProcessDefinition() {
     // given
     createGrantAuthorization(PROCESS_DEFINITION, "oneExternalTaskProcess", userId, READ_INSTANCE, UPDATE_INSTANCE);
-    System.out.println("Test7: With UPDATE_INSTANCE and READ_INSTANCE permission on Process definition, external Task count: " + externalTaskService.createExternalTaskQuery().count());
 
 
     // when
@@ -179,7 +172,6 @@ public class FetchExternalTaskAuthorizationTest extends AuthorizationTest {
     // given
     createGrantAuthorization(PROCESS_INSTANCE, instance1Id, userId, READ);
     createGrantAuthorization(PROCESS_DEFINITION, "oneExternalTaskProcess", userId, UPDATE_INSTANCE);
-    System.out.println("Test8: With UPDATE_INSTANCE permission on Process definition adn READ permission on PROCESS_INSTANCE, external Task count: " + externalTaskService.createExternalTaskQuery().count());
 
 
     // when
@@ -197,7 +189,6 @@ public class FetchExternalTaskAuthorizationTest extends AuthorizationTest {
     // given
     createGrantAuthorization(PROCESS_INSTANCE, instance1Id, userId, UPDATE);
     createGrantAuthorization(PROCESS_DEFINITION, "oneExternalTaskProcess", userId, READ_INSTANCE);
-    System.out.println("Test9: With READ_INSTANCE permission on Process definition and UPDATE permission on Process instance, external Task count: " + externalTaskService.createExternalTaskQuery().count());
 
 
     // when
@@ -214,7 +205,6 @@ public class FetchExternalTaskAuthorizationTest extends AuthorizationTest {
   public void testFetchWithReadAndUpdateOnAnyProcessInstance() {
     // given
     createGrantAuthorization(PROCESS_INSTANCE, ANY, userId, READ, UPDATE);
-    System.out.println("Test10: With READ and UPDATE permission on ANY Process instance, external Task count: " + externalTaskService.createExternalTaskQuery().count());
 
 
     // when
@@ -231,7 +221,6 @@ public class FetchExternalTaskAuthorizationTest extends AuthorizationTest {
     // given
     createGrantAuthorization(PROCESS_INSTANCE, ANY, userId, READ, UPDATE);
     createGrantAuthorization(PROCESS_INSTANCE, instance1Id, userId, READ, UPDATE);
-    System.out.println("Test11: With READ and UPDATE permission on ANY Process instance and READ and UPDATE on process instance: multi matching, external Task count: " + externalTaskService.createExternalTaskQuery().count());
 
 
     // when
@@ -247,7 +236,6 @@ public class FetchExternalTaskAuthorizationTest extends AuthorizationTest {
   public void testQueryWithReadAndUpdateInstanceOnAnyProcessDefinition() {
     // given
     createGrantAuthorization(PROCESS_DEFINITION, ANY, userId, READ_INSTANCE, UPDATE_INSTANCE);
-    System.out.println("Test12: With READ_INSTANCE and UPDATE_INSTANCE permission on ANY Process Definition, external Task count: " + externalTaskService.createExternalTaskQuery().count());
 
 
     // when
@@ -264,7 +252,7 @@ public class FetchExternalTaskAuthorizationTest extends AuthorizationTest {
     // given
     createGrantAuthorization(PROCESS_DEFINITION, ANY, userId, UPDATE_INSTANCE);
     createGrantAuthorization(PROCESS_INSTANCE, instance1Id, userId, READ);
-    System.out.println("Test13: With READ permission on Process instance and UPDATE_INSTANCE on any process definition, external Task count: " + externalTaskService.createExternalTaskQuery().count());
+
 
 
     // when
@@ -281,7 +269,6 @@ public class FetchExternalTaskAuthorizationTest extends AuthorizationTest {
   public void testFetchWithReadProcessInstanceOnExternalTask(){
     // given
     createGrantAuthorization(EXTERNAL_TASK, "externalTaskTopic", userId, ExternalTaskPermission.READ_INSTANCE);
-    System.out.println("Test14: With READ_INSTANCE permission on External Task, external Task count: " + externalTaskService.createExternalTaskQuery().count());
 
     // when
     List<LockedExternalTask> tasks = externalTaskService.fetchAndLock(5, WORKER_ID)
@@ -296,7 +283,6 @@ public class FetchExternalTaskAuthorizationTest extends AuthorizationTest {
   public void testFetchWithUpdateProcessInstanceOnExternalTask(){
     // given
     createGrantAuthorization(EXTERNAL_TASK, "externalTaskTopic", userId, ExternalTaskPermission.UPDATE_INSTANCE);
-    System.out.println("Test14: With UPDATE_INSTANCE permission on External Task, external Task count: " + externalTaskService.createExternalTaskQuery().count());
 
     // when
     List<LockedExternalTask> tasks = externalTaskService.fetchAndLock(5, WORKER_ID)
@@ -311,7 +297,6 @@ public class FetchExternalTaskAuthorizationTest extends AuthorizationTest {
   public void testFetchWithUpdateAndReadProcessInstanceOnExternalTask(){
     // given
     createGrantAuthorization(EXTERNAL_TASK, "externalTaskTopic", userId, ExternalTaskPermission.READ_INSTANCE, ExternalTaskPermission.UPDATE_INSTANCE);
-    System.out.println("Test14: With UPDATE_INSTANCE and READ_INSTANCE permission on External Task, external Task count: " + externalTaskService.createExternalTaskQuery().count());
 
     // when
     List<LockedExternalTask> tasks = externalTaskService.fetchAndLock(5, WORKER_ID)

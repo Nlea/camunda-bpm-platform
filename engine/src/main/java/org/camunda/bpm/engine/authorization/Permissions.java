@@ -86,11 +86,6 @@ public enum Permissions implements Permission {
   /** Indicates that DELETE_INSTANCE interactions are permitted. */
   DELETE_INSTANCE("DELETE_INSTANCE", 2048, EnumSet.of(Resources.PROCESS_DEFINITION)),
 
-  /** Indicates that READ_EXTERNAL_TASK interactions are permitted. */
- // READ_EXTERNAL_TASK("READ_EXTERNAL_TASK", 4096, EnumSet.of(Resources.PROCESS_DEFINITION)),
-
-  /** Indicates that UPDATE_EXTERNAL_TASK interactions are permitted. */
-  //UPDATE_EXTERNAL_TASK("UPDATE_EXTERNAL_TASK", 8192, EnumSet.of(Resources.PROCESS_DEFINITION)),
 
   /**
    * <p>Indicates that READ_HISTORY interactions are permitted.
