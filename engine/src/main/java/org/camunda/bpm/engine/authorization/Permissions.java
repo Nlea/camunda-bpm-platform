@@ -78,10 +78,10 @@ public enum Permissions implements Permission {
   CREATE_INSTANCE("CREATE_INSTANCE", 256, EnumSet.of(Resources.DECISION_DEFINITION, Resources.PROCESS_DEFINITION)),
 
   /** Indicates that READ_INSTANCE interactions are permitted. */
-  READ_INSTANCE("READ_INSTANCE", 512, EnumSet.of(Resources.PROCESS_DEFINITION, Resources.EXTERNAL_TASK)),
+  READ_INSTANCE("READ_INSTANCE", 512, EnumSet.of(Resources.PROCESS_DEFINITION)),
 
   /** Indicates that UPDATE_INSTANCE interactions are permitted. */
-  UPDATE_INSTANCE("UPDATE_INSTANCE", 1024, EnumSet.of(Resources.PROCESS_DEFINITION, Resources.EXTERNAL_TASK)),
+  UPDATE_INSTANCE("UPDATE_INSTANCE", 1024, EnumSet.of(Resources.PROCESS_DEFINITION)),
 
   /** Indicates that DELETE_INSTANCE interactions are permitted. */
   DELETE_INSTANCE("DELETE_INSTANCE", 2048, EnumSet.of(Resources.PROCESS_DEFINITION)),

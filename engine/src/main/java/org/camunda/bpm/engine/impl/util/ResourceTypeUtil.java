@@ -21,6 +21,7 @@ import java.util.Map;
 
 import org.camunda.bpm.engine.BadUserRequestException;
 import org.camunda.bpm.engine.authorization.BatchPermissions;
+import org.camunda.bpm.engine.authorization.ExternalTaskPermission;
 import org.camunda.bpm.engine.authorization.HistoricProcessInstancePermissions;
 import org.camunda.bpm.engine.authorization.HistoricTaskPermissions;
 import org.camunda.bpm.engine.authorization.OptimizePermissions;
@@ -34,6 +35,7 @@ import org.camunda.bpm.engine.authorization.TaskPermissions;
 import org.camunda.bpm.engine.authorization.UserOperationLogCategoryPermissions;
 
 import static org.camunda.bpm.engine.authorization.Resources.BATCH;
+import static org.camunda.bpm.engine.authorization.Resources.EXTERNAL_TASK;
 import static org.camunda.bpm.engine.authorization.Resources.HISTORIC_PROCESS_INSTANCE;
 import static org.camunda.bpm.engine.authorization.Resources.HISTORIC_TASK;
 import static org.camunda.bpm.engine.authorization.Resources.OPERATION_LOG_CATEGORY;
@@ -60,6 +62,7 @@ public class ResourceTypeUtil {
       put(HISTORIC_TASK.resourceType(), HistoricTaskPermissions.class);
       put(HISTORIC_PROCESS_INSTANCE.resourceType(), HistoricProcessInstancePermissions.class);
       put(OPERATION_LOG_CATEGORY.resourceType(), UserOperationLogCategoryPermissions.class);
+      put(EXTERNAL_TASK.resourceType(), ExternalTaskPermission.class);
       put(OPTIMIZE.resourceType(), OptimizePermissions.class);
     }};
 

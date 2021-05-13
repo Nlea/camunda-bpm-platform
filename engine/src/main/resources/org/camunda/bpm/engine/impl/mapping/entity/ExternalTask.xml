@@ -196,7 +196,11 @@
       OR
        (AUTH.RESOURCE_TYPE_ = 6 
         AND AUTH.RESOURCE_ID_ in (RES.PROC_DEF_KEY_, '*') 
-        AND ${bitand1}AUTH.PERMS_${bitand2}512${bitand3} = 512) 
+        AND ${bitand1}AUTH.PERMS_${bitand2}512${bitand3} = 512)
+        OR
+        (AUTH.RESOURCE_TYPE_ =21
+        AND AUTH.RESOURCE_ID_ in (RES.TOPIC_NAME_, '*')
+        AND ${bitand1}AUTH.PERMS_${bitand2}8${bitand3} = 8)
       )
       <include refid="org.camunda.bpm.engine.impl.persistence.entity.AuthorizationEntity.authCheckJoinWithoutOnClause" />
       AUTH1 ON (
@@ -207,7 +211,12 @@
          (AUTH1.RESOURCE_TYPE_ = 6 
           AND AUTH1.RESOURCE_ID_ in (RES.PROC_DEF_KEY_, '*') 
           AND ${bitand1}AUTH1.PERMS_${bitand2}1024${bitand3} = 1024)
-      )    
+      OR
+      (AUTH.RESOURCE_TYPE_ =21
+      AND AUTH1.RESOURCE_ID_ in (RES.TOPIC_NAME_, '*')
+      AND ${bitand1}AUTH.PERMS_${bitand2}16${bitand3} = 16)
+      )
+
     </if>
     <where>
       (RES.LOCK_EXP_TIME_ is null or RES.LOCK_EXP_TIME_ &lt;= #{parameter.now, jdbcType=TIMESTAMP})
@@ -339,7 +348,11 @@
       OR
        (AUTH.RESOURCE_TYPE_ = 6 
         AND AUTH.RESOURCE_ID_ in (RES.PROC_DEF_KEY_, '*')
-        AND ${bitand1}AUTH.PERMS_${bitand2}512${bitand3} = 512) 
+        AND ${bitand1}AUTH.PERMS_${bitand2}512${bitand3} = 512)
+      OR
+      (AUTH.RESOURCE_TYPE_ = 21
+      AND AUTH.RESOURCE_ID_ in (RES.TOPIC_NAME_, '*')
+      AND ${bitand1}AUTH.PERMS_${bitand2}8${bitand3} = 8)
       )
     </if>
     <where>

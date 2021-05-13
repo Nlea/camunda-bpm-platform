@@ -42,7 +42,7 @@ public enum ExternalTaskPermission implements Permission {
     private String name;
     private int id;
 
-    private ExternalTaskPermission(String name, int id) {
+    ExternalTaskPermission(String name, int id) {
         this.name = name;
         this.id = id;
     }
@@ -50,16 +50,16 @@ public enum ExternalTaskPermission implements Permission {
 
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     @Override
     public int getValue() {
-        return 0;
+        return id;
     }
 
     @Override
     public Resource[] getTypes() {
-        return new Resource[0];
+        return RESOURCES;
     }
 }

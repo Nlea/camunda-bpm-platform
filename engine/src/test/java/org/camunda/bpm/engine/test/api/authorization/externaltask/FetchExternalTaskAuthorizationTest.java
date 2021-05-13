@@ -16,6 +16,7 @@
  */
 package org.camunda.bpm.engine.test.api.authorization.externaltask;
 
+
 import static org.camunda.bpm.engine.authorization.Authorization.ANY;
 import static org.camunda.bpm.engine.authorization.Permissions.*;
 import static org.camunda.bpm.engine.authorization.Resources.*;
@@ -24,6 +25,7 @@ import static org.junit.Assert.assertEquals;
 import java.security.Permission;
 import java.util.List;
 
+import org.camunda.bpm.engine.authorization.ExternalTaskPermission;
 import org.camunda.bpm.engine.authorization.Permissions;
 import org.camunda.bpm.engine.externaltask.LockedExternalTask;
 import org.camunda.bpm.engine.test.api.authorization.AuthorizationTest;
@@ -278,7 +280,7 @@ public class FetchExternalTaskAuthorizationTest extends AuthorizationTest {
   @Test
   public void testFetchWithReadProcessInstanceOnExternalTask(){
     // given
-    createGrantAuthorization(EXTERNAL_TASK, "externalTaskTopic", userId, READ_INSTANCE);
+    createGrantAuthorization(EXTERNAL_TASK, "externalTaskTopic", userId, ExternalTaskPermission.READ_INSTANCE);
     System.out.println("Test14: With READ_INSTANCE permission on External Task, external Task count: " + externalTaskService.createExternalTaskQuery().count());
 
     // when
@@ -293,7 +295,7 @@ public class FetchExternalTaskAuthorizationTest extends AuthorizationTest {
   @Test
   public void testFetchWithUpdateProcessInstanceOnExternalTask(){
     // given
-    createGrantAuthorization(EXTERNAL_TASK, "externalTaskTopic", userId, UPDATE_INSTANCE);
+    createGrantAuthorization(EXTERNAL_TASK, "externalTaskTopic", userId, ExternalTaskPermission.UPDATE_INSTANCE);
     System.out.println("Test14: With UPDATE_INSTANCE permission on External Task, external Task count: " + externalTaskService.createExternalTaskQuery().count());
 
     // when
@@ -308,7 +310,7 @@ public class FetchExternalTaskAuthorizationTest extends AuthorizationTest {
   @Test
   public void testFetchWithUpdateAndReadProcessInstanceOnExternalTask(){
     // given
-    createGrantAuthorization(EXTERNAL_TASK, "externalTaskTopic", userId, READ_INSTANCE,UPDATE_INSTANCE);
+    createGrantAuthorization(EXTERNAL_TASK, "externalTaskTopic", userId, ExternalTaskPermission.READ_INSTANCE, ExternalTaskPermission.UPDATE_INSTANCE);
     System.out.println("Test14: With UPDATE_INSTANCE and READ_INSTANCE permission on External Task, external Task count: " + externalTaskService.createExternalTaskQuery().count());
 
     // when
@@ -317,7 +319,7 @@ public class FetchExternalTaskAuthorizationTest extends AuthorizationTest {
             .execute();
 
     // then
-    assertEquals(1, tasks.size());
+    assertEquals(2, tasks.size());
   }
 
 }

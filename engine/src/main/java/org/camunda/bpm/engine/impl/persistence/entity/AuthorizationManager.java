@@ -1033,7 +1033,7 @@ public class AuthorizationManager extends AbstractManager {
         .disjunctive()
         .atomicCheck(PROCESS_INSTANCE, "RES.PROC_INST_ID_", READ)
         .atomicCheck(PROCESS_DEFINITION, "RES.PROC_DEF_KEY_", READ_INSTANCE)
-            .atomicCheck(EXTERNAL_TASK, "RES.EXTERNAL_TASK", READ_INSTANCE)
+            .atomicCheck(EXTERNAL_TASK, "RES.TOPIC_NAME_", ExternalTaskPermission.READ_INSTANCE)
         .build();
     addPermissionCheck(query.getAuthCheck(), permissionCheck);
   }
@@ -1047,15 +1047,16 @@ public class AuthorizationManager extends AbstractManager {
         .disjunctive()
         .atomicCheck(PROCESS_INSTANCE, "RES.PROC_INST_ID_", READ)
         .atomicCheck(PROCESS_DEFINITION, "RES.PROC_DEF_KEY_", READ_INSTANCE)
-            .atomicCheck(EXTERNAL_TASK, "RES.EXTERNAL_TASK", READ_INSTANCE)
+            .atomicCheck(EXTERNAL_TASK, "RES.TOPIC_NAME_", ExternalTaskPermission.READ_INSTANCE)
         .done()
       .composite()
         .disjunctive()
         .atomicCheck(PROCESS_INSTANCE, "RES.PROC_INST_ID_", UPDATE)
         .atomicCheck(PROCESS_DEFINITION, "RES.PROC_DEF_KEY_", UPDATE_INSTANCE)
-            .atomicCheck(EXTERNAL_TASK, "RES.EXTERNAL_TASK", UPDATE_INSTANCE)
+            .atomicCheck(EXTERNAL_TASK, "RES.TOPIC_NAME_", ExternalTaskPermission.UPDATE_INSTANCE)
         .done()
       .build();
+    System.out.println("Here!!!!!!!!" );
 
     addPermissionCheck(parameter.getAuthCheck(), permissionCheck);
   }
